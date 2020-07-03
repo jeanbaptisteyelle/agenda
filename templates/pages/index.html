@@ -348,20 +348,20 @@
         </div>
 
         <div class="row">
+        {% for element in nextevent %}
             <div class="col-12 col-sm-6 col-md-4">
                 <div class="next-event-wrap">
                     <figure>
-                        <a href="#"><img src="{% static 'images/next1.jpg' %}" alt="1"></a>
+                        <a href="#"><img src="{{element.image.url}}" alt="1"></a>
 
                         <div class="event-rating">8.9</div>
                     </figure>
-
                     <header class="entry-header">
-                        <h3 class="entry-title">U2 Concert in Detroitt</h3>
+                        <h3 class="entry-title">{{element.titre}}</h3>
 
-                        <div class="posted-date">Saturday <span>Jan 27, 2018</span></div>
+                        <div class="posted-date">Saturday <span>{{element.date_start}}</span></div>
                     </header>
-
+            
                     <div class="entry-content">
                         <p>Vestibulum eget lacus at mauris sagittis varius. Etiam ut venenatis dui. Nullam tellus risus.</p>
                     </div>
@@ -371,7 +371,8 @@
                     </footer>
                 </div>
             </div>
-
+            {% endfor %}
+{% comment %} 
             <div class="col-12 col-sm-6 col-md-4">
                 <div class="next-event-wrap">
                     <figure>
@@ -419,7 +420,7 @@
                     </footer>
                 </div>
             </div>
-        </div>
+        </div> {% endcomment %}
     </div>
 </div>
 
@@ -441,118 +442,25 @@
 
                 <div class="swiper-container homepage-regional-events-slider">
                     <div class="swiper-wrapper">
+                     {% for newyork in event %} 
                         <div class="swiper-slide">
                             <figure>
-                                <img src="{% static 'images/event-slider-1.jpg' %}" alt="">
+                                <img src="{{newyork.image.url}}" alt="">
 
                                 <a class="event-overlay-link flex justify-content-center align-items-center" href="#">+</a>
                             </figure><!-- .hero-image -->
 
                             <div class="entry-header">
-                                <h2 class="entry-title">U2 Concert </h2>
+                                <h2 class="entry-title">{{newyork.titre}} </h2>
                             </div><!--- .entry-header -->
 
                             <div class="entry-footer">
-                                <div class="posted-date">Saturday <span>Jan 27, 2018</span></div>
+                                <div class="posted-date">Saturday <span>{{newyork.date_start}}</span></div>
                             </div><!-- .entry-footer" -->
                         </div><!-- .swiper-slide -->
+                    {% endfor %} 
 
-                        <div class="swiper-slide">
-                            <figure>
-                                <img src="{% static 'images/event-slider-2.jpg' %}" alt="">
-
-                                <a class="event-overlay-link flex justify-content-center align-items-center" href="#">+</a>
-                            </figure><!-- .hero-image -->
-
-                            <div class="entry-header">
-                                <h2 class="entry-title">Broadway Hit </h2>
-                            </div><!--- .entry-header -->
-
-                            <div class="entry-footer">
-                                <div class="posted-date">Saturday <span>Jan 27, 2018</span></div>
-                            </div><!-- .entry-footer" -->
-                        </div><!-- .swiper-slide -->
-
-                        <div class="swiper-slide">
-                            <figure>
-                                <img src="{% static 'images/event-slider-3.jpg' %}" alt="">
-
-                                <a class="event-overlay-link flex justify-content-center align-items-center" href="#">+</a>
-                            </figure><!-- .hero-image -->
-
-                            <div class="entry-header">
-                                <h2 class="entry-title">Gallery Exibition</h2>
-                            </div><!--- .entry-header -->
-
-                            <div class="entry-footer">
-                                <div class="posted-date">Saturday <span>Jan 27, 2018</span></div>
-                            </div><!-- .entry-footer" -->
-                        </div><!-- .swiper-slide -->
-
-                        <div class="swiper-slide">
-                            <figure>
-                                <img src="{% static 'images/event-slider-4.jpg' %}" alt="">
-
-                                <a class="event-overlay-link flex justify-content-center align-items-center" href="#">+</a>
-                            </figure><!-- .hero-image -->
-
-                            <div class="entry-header">
-                                <h2 class="entry-title">Art Gallery</h2>
-                            </div><!--- .entry-header -->
-
-                            <div class="entry-footer">
-                                <div class="posted-date">Saturday <span>Jan 27, 2018</span></div>
-                            </div><!-- .entry-footer" -->
-                        </div><!-- .swiper-slide -->
-
-                        <div class="swiper-slide">
-                            <figure>
-                                <img src="{% static 'images/event-slider-5.jpg' %}" alt="">
-
-                                <a class="event-overlay-link flex justify-content-center align-items-center" href="#">+</a>
-                            </figure><!-- .hero-image -->
-
-                            <div class="entry-header">
-                                <h2 class="entry-title">Music Concert</h2>
-                            </div><!--- .entry-header -->
-
-                            <div class="entry-footer">
-                                <div class="posted-date">Saturday <span>Jan 27, 2018</span></div>
-                            </div><!-- .entry-footer" -->
-                        </div><!-- .swiper-slide -->
-
-                        <div class="swiper-slide">
-                            <figure>
-                                <img src="{% static 'images/event-slider-6.jpg' %}" alt="">
-
-                                <a class="event-overlay-link flex justify-content-center align-items-center" href="#">+</a>
-                            </figure><!-- .hero-image -->
-
-                            <div class="entry-header">
-                                <h2 class="entry-title">EDM Festival</h2>
-                            </div><!--- .entry-header -->
-
-                            <div class="entry-footer">
-                                <div class="posted-date">Saturday <span>Jan 27, 2018</span></div>
-                            </div><!-- .entry-footer" -->
-                        </div><!-- .swiper-slide -->
-
-                        <div class="swiper-slide">
-                            <figure>
-                                <img src="{% static 'images/event-slider-1.jpg' %}" alt="">
-
-                                <a class="event-overlay-link flex justify-content-center align-items-center" href="#">+</a>
-                            </figure><!-- .hero-image -->
-
-                            <div class="entry-header">
-                                <h2 class="entry-title">U2 Concert </h2>
-                            </div><!--- .entry-header -->
-
-                            <div class="entry-footer">
-                                <div class="posted-date">Saturday <span>Jan 27, 2018</span></div>
-                            </div><!-- .entry-footer" -->
-                        </div><!-- .swiper-slide -->
-                    </div><!-- .swiper-wrapper -->
+                    </div><!-- .swiper-wrapper --> 
 
                     <!-- Add Arrows -->
                     <div class="swiper-button-next flex justify-content-center align-items-center">
@@ -570,44 +478,44 @@
                     </header>
 
                     <div class="events-partners-logos flex flex-wrap justify-content-between align-items-center">
-                        <div class="event-partner-logo">
-                            <a href="#"><img src="{% static 'images/pixar.png' %}" alt=""></a>
+                        <div class="event-partner-l%ogo">
+                            <a href="#"><img src="/static/images/pixar.png" alt=""></a>
                         </div>
 
-                        <div class="event-partner-logo">
-                            <a href="#"><img src="{% static 'images/the-pirate.png' %}" alt=""></a>
+                        <div class="event-partner-l%ogo">
+                            <a href="#"><img src="/static/images/the-pirate.png" alt=""></a>
                         </div>
 
-                        <div class="event-partner-logo">
-                            <a href="#"><img src="{% static 'images/himalayas.png' %}" alt=""></a>
+                        <div class="event-partner-l%ogo">
+                            <a href="#"><img src="/static/images/himalayas.png" alt=""></a>
                         </div>
 
-                        <div class="event-partner-logo">
-                            <a href="#"><img src="{% static 'images/sa.png' %}" alt=""></a>
+                        <div class="event-partner-l%ogo">
+                            <a href="#"><img src="/static/images/sa.png" alt=""></a>
                         </div>
 
-                        <div class="event-partner-logo">
-                            <a href="#"><img src="{% static 'images/south-porth.png' %}" alt=""></a>
+                        <div class="event-partner-l%ogo">
+                            <a href="#"><img src="/static/images/south-porth.png" alt=""></a>
                         </div>
 
-                        <div class="event-partner-logo">
-                            <a href="#"><img src="{% static 'images/himalayas.png' %}" alt=""></a>
+                        <div class="event-partner-l%ogo">
+                            <a href="#"><img src="/static/images/himalayas.png" alt=""></a>
                         </div>
 
-                        <div class="event-partner-logo">
-                            <a href="#"><img src="{% static 'images/sa.png' %}" alt=""></a>
+                        <div class="event-partner-l%ogo">
+                            <a href="#"><img src="/static/images/sa.png" alt=""></a>
                         </div>
 
-                        <div class="event-partner-logo">
-                            <a href="#"><img src="{% static 'images/south-porth.png' %}" alt=""></a>
+                        <div class="event-partner-l%ogo">
+                            <a href="#"><img src="/static/images/south-porth.png" alt=""></a>
                         </div>
 
-                        <div class="event-partner-logo">
-                            <a href="#"><img src="{% static 'images/pixar.png' %}" alt=""></a>
+                        <div class="event-partner-l%ogo">
+                            <a href="#"><img src="/static/images/pixar.png" alt=""></a>
                         </div>
 
-                        <div class="event-partner-logo">
-                            <a href="#"><img src="{% static 'images/the-pirate.png' %}" alt=""></a>
+                        <div class="event-partner-l%ogo">
+                            <a href="#"><img src="/static/images/the-pirate.png" alt=""></a>
                         </div>
                     </div>
                 </div>
@@ -616,6 +524,7 @@
         </div>
     </div>
 </div>
+
 
 <div class="newsletter-subscribe">
     <div class="container">

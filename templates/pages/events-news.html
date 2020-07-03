@@ -28,7 +28,7 @@
                 <div class="col-10 col-lg-2 order-lg-1">
                     <div class="site-branding">
                         <div class="site-title">
-                            <a href="#"><img src="{% static 'images/logo.png' %}" alt="logo"></a>
+                            <a href="#"><img src="{{siteinfo.logo_H.url}}" alt="logo"></a>
                         </div><!-- .site-title -->
                     </div><!-- .site-branding -->
                 </div><!-- .col -->
@@ -76,10 +76,11 @@
 
 <div class="container">
     <div class="row">
+    {% for news in new %}
         <div class="col-12">
             <article class="events-news-post">
                 <header class="entry-header">
-                    <h2 class="entry-title"><a href="#">A guide to all summer festivals</a></h2>
+                    <h2 class="entry-title"><a href="#">{{news.titre}}</a></h2>
 
                     <div class="entry-meta flex align-items-center">
                         <div class="posted-author"><a href="#">by James Williams</a></div>
@@ -89,17 +90,17 @@
                 </header>
 
                 <figure>
-                    <a href="#"><img src="{% static 'images/news-1.jpg' %}" alt=""></a>
+                    <a href="#"><img src="{{news.image.url}}" alt=""></a>
 
                     <div class="posted-date"><span>Feb</span><span>11</span><span>‘18</span></div>
                 </figure>
 
                 <div class="entry-content">
-                    <p>Vestibulum eget lacus at mauris sagittis varius. Etiam ut venenatis dui. Nullam tellus risus, pellentesque at facilisis et, scelerisque sit amet metus. Duis vel semper turpis, ac tempus libero. Maecenas id ultrices risus. Aenean nec ornare ipsum, lacinia volutpat urna. Maecenas ut aliquam purus, quis sodales dolor.tiam ut venenatis dui. Nullam tellus risus, pellentesque at facilisis et, scelerisque sit ame.</p>
+                    <p>{{news.description}}</p>
                 </div>
+               
             </article>
-
-            <article class="events-news-post">
+            {% comment %} <article class="events-news-post">
                 <header class="entry-header">
                     <h2 class="entry-title"><a href="#">Top 10 electronic music events in February</a></h2>
 
@@ -141,10 +142,10 @@
                 <div class="entry-content">
                     <p>Vestibulum eget lacus at mauris sagittis varius. Etiam ut venenatis dui. Nullam tellus risus, pellentesque at facilisis et, scelerisque sit amet metus. Duis vel semper turpis, ac tempus libero. Maecenas id ultrices risus. Aenean nec ornare ipsum, lacinia volutpat urna. Maecenas ut aliquam purus, quis sodales dolor.tiam ut venenatis dui. Nullam tellus risus, pellentesque at facilisis et, scelerisque sit ame.</p>
                 </div>
-            </article>
+            </article> {% endcomment %}
         </div>
+     {% endfor %}
     </div>
-
     <div class="row">
         <div class="col-12">
             <div class="blog-pagination">
@@ -192,7 +193,7 @@
         <div class="row">
             <div class="col-12">
                 <figure class="footer-logo">
-                    <a href="#"><img src="{% static 'images/logo.png' %}" alt="logo"></a>
+                    <a href="#"><img src="{{siteinfo.logo_H.url}}" alt="logo"></a>
                 </figure>
 
                 <nav class="footer-navigation">

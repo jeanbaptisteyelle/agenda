@@ -120,3 +120,30 @@ class PartnerAdmin(admin.ModelAdmin):
         queryset.update(status=False)
         self.message_user(request, 'La selection a été desactivé avec succès')
     desactive.short_description = 'desactiver'
+
+    @admin.register(models.New)
+    class NewAdmin(admin.ModelAdmin):
+        list_display = ('titre','description','event','date_add','date_update','status','image_view')
+        list_filter = ('date_add','date_update','status','event',)
+        search_fields = ('titre',)
+        date_hierarchy = 'date_add'
+        list_display_links = ['titre']
+        fieldsets = [
+            ('New_info', {'fields':['titre','description','event','image']}),
+            ('standard', {'fields':['status']}),
+            ]
+
+        def image_view(self,obj):
+            return mark_safe("<img src='{url}' width='100px',height='50px'>".format(url=obj.image.url))
+    
+
+        actions = ('active','desactive')
+        def active(self, request, queryset):
+            queryset.update(status=True)
+            self.message_user(request, 'La selection a été activé avec succès')
+        active.short_description = 'activer'
+            
+        def desactive(self, request, queryset):
+            queryset.update(status=False)
+            self.message_user(request, 'La selection a été desactivé avec succès')
+        desactive.short_description = 'desactiver'

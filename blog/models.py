@@ -51,8 +51,8 @@ class Lieu(models.Model):
 class Event(models.Model):
     titre = models.CharField(max_length=255)
     lieu =  models.ForeignKey(Lieu, on_delete=models.CASCADE, related_name='lieu_Event')
-    date_start = models.CharField( max_length=255)
-    date_end = models.CharField( max_length=255)
+    date_start = models.DateTimeField()
+    date_end = models.DateTimeField()
     prix = models.FloatField()
     description = models.TextField()
     organisateurs = models.TextField()

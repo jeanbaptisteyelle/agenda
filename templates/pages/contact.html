@@ -29,7 +29,7 @@
                 <div class="col-10 col-lg-2 order-lg-1">
                     <div class="site-branding">
                         <div class="site-title">
-                            <a href="#"><img src="{% static 'images/logo.png' %}" alt="logo"></a>
+                            <a href="#"><img src="{{siteinfo.logo_H.url}}" alt="logo"></a>
                         </div><!-- .site-title -->
                     </div><!-- .site-branding -->
                 </div><!-- .col -->
@@ -77,25 +77,27 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-12 col-md-6 col-lg-4">
+        
+        {% for lieux in lieu %}
+          <div class="col-12 col-md-6 col-lg-4">
             <div class="contact-location-details">
-                <h2 class="entry-title">New York</h2>
+                <h2 class="entry-title">{{lieux.ville}}</h2>
 
                 <div class="entry-content">
-                    <p>Vestibulum eget lacus at mauris sagittis varius. Etiam ut venenatis dui. Nullam tellus risus, pellentesque at facilisis et.</p>
+                    <p>{{lieux.description}}</p>
                 </div>
 
                 <footer class="entry-footer">
                     <ul>
-                        <li class="contact-address">667889 Madison Avenue, no24-56</li>
-                        <li class="contact-number">665 5667 8899 661</li>
-                        <li class="contact-email"><a href="#">office@yourbusiness.com</a></li>
+                        <li class="contact-address">{{lieux.adresse}}</li>
+                        <li class="contact-number">{{lieux.tel}}</li>
+                        <li class="contact-email"><a href="#">{{lieux.email}}</a></li>
                     </ul>
                 </footer>
             </div>
-        </div>
-
-        <div class="col-12 col-md-6 col-lg-4">
+        </div>  
+        {% endfor %}
+        {% comment %} <div class="col-12 col-md-6 col-lg-4">
             <div class="contact-location-details">
                 <h2 class="entry-title">Miami</h2>
 
@@ -129,12 +131,12 @@
                     </ul>
                 </footer>
             </div>
-        </div>
+        </div> {% endcomment %}
     </div>
 </div>
 
 <div class="contact-page-map">
-    <iframe id="gmap_canvas" src="https://maps.google.com/maps?q=university of san francisco&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+    <iframe id="gmap_canvas" src="{{lieu.marp_url}}" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
 </div>
 
 <div class="container">
