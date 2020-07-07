@@ -1,4 +1,4 @@
-{% load static  %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +28,7 @@
                 <div class="col-10 col-lg-2 order-lg-1">
                     <div class="site-branding">
                         <div class="site-title">
-                            <a href="#"><img src="{{siteinfo.logo_H.url}}" alt="logo"></a>
+                            <a href="#"><img src="{% static 'images/logo.png' %}" alt="logo"></a>
                         </div><!-- .site-title -->
                     </div><!-- .site-branding -->
                 </div><!-- .col -->
@@ -43,11 +43,12 @@
                         </div><!-- .hamburger-menu -->
 
                         <ul>
-                             <li><a href="{% url 'index' %}">Home</a></li>
+                            <li><a href="{% url 'index' %}">Home</a></li>
                             <li><a href="{% url 'single-event' %}">About us</a></li>
                             <li><a href="{% url 'events' %}">Events</a></li>
                             <li><a href="{% url 'events-news' %}">News</a></li>
                             <li><a href="{% url 'contact' %}">Contact</a></li>
+                        
                         </ul>
                     </nav><!-- .site-navigation -->
                 </div><!-- .col -->
@@ -66,7 +67,7 @@
             <div class="row">
                 <div class="col-12">
                     <header class="entry-header">
-                        <h1 class="entry-title"></h1>
+                        <h1 class="entry-title">Summer Festival.</h1>
                     </header>
                 </div>
             </div>
@@ -80,11 +81,11 @@
             <div class="event-content-wrap">
                 <header class="entry-header flex flex-wrap justify-content-between align-items-end">
                     <div class="single-event-heading">
-                        <h2 class="entry-title">{{single_new.titre}}</h2>
+                        <h2 class="entry-title">2018 Summer Festival</h2>
 
-                        <div class="event-location"><a href="#">{{single_new.event.adresse}}</a></div>
+                        <div class="event-location"><a href="#">Ford Field  2000 Brush St, Detroit, MI 48226, EE. UU.</a></div>
 
-                        <div class="event-date">{{single_new.event.date_start}} - {{single_new.event.date_end}}</div>
+                        <div class="event-date">May 29, 2018 @ 8:00 Pm - May 30, 2018 @ 4:00 Am</div>
                     </div>
 
                     <div class="buy-tickets flex justify-content-center align-items-center">
@@ -93,7 +94,7 @@
                 </header>
 
                 <figure class="events-thumbnail">
-                    <img src="{{single_new.image.url}}" alt="">
+                    <img src="{% static 'images/summer.jpg" alt="">
                 </figure>
             </div>
         </div>
@@ -114,42 +115,42 @@
                             <div class="single-event-details">
                                 <div class="single-event-details-row">
                                     <label>Start:</label>
-                                    <p>{{single_new.event.date_start}}</p>
+                                    <p>June 17 @ 09:00 am</p>
                                 </div>
 
                                 <div class="single-event-details-row">
                                     <label>End:</label>
-                                    <p>{{single_new.event.date_end}}</p>
+                                    <p>June 22 @ 07:30 am</p>
                                 </div>
 
                                 <div class="single-event-details-row">
                                     <label>Price:</label>
-                                    <p>{{single_new.event.prix}} <span>Sold Out</span></p>
+                                    <p>$89 <span>Sold Out</span></p>
                                 </div>
 
                                 <div class="single-event-details-row">
                                     <label>Categories:</label>
-                                    <p>{{single_new.event.categorie}}</p>
+                                    <p>Festivals</p>
                                 </div>
 
                                 <div class="single-event-details-row">
                                     <label>Tags:</label>
-                                    <p><a href="#">{{single_new.event.tags.all|join:",  "}}</a></p>
+                                    <p><a href="#">festivals</a>, <a href="#">music</a>, <a href="#">concert</a></p>
                                 </div>
                             </div>
 
                             <div class="single-event-map">
-                                <iframe id="gmap_canvas" src="{{single_new.event.marp}}" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                                <iframe id="gmap_canvas" src="https://maps.google.com/maps?q=university of san francisco&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
                             </div>
                         </div>
                     </div>
 
                     <div id="tab_venue" class="tab-content">
-                        <p>single_new.event.description</p>
+                        <p>Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui.</p>
                     </div>
 
                     <div id="tab_organizers" class="tab-content">
-                        <p>{{single_new.event.organisateurs}}</p>
+                        <p>Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna.</p>
                     </div>
                 </div>
             </div>
@@ -163,7 +164,7 @@
                     <div class="ticket-type flex justify-content-between align-items-center">
                         <h3 class="entry-title"><span>Siver Ticket</span> Basic entry</h3>
 
-                        <div class="ticket-price">${{single_new.event.prix}}</div>
+                        <div class="ticket-price">$89</div>
                     </div>
 
                     <div class="flex align-items-center">
@@ -208,35 +209,35 @@
                 <div class="upcoming-events-header">
                     <h4>Upcoming Events</h4>
                 </div>
+
                 <div class="upcoming-events-list">
-                  {% for up in upcoming %}
                     <div class="upcoming-event-wrap flex flex-wrap justify-content-between align-items-center">
                         <figure class="events-thumbnail">
-                            <a href="#"><img src="{{up.image.url}}" alt=""></a>
+                            <a href="#"><img src="{% static 'images/upcoming-1.jpg" alt=""></a>
                         </figure>
 
                         <div class="entry-meta">
                             <div class="event-date">
-                                {{up.date_start|date:'f'}}<span>{{up.date_start|date:'M'}}</span>
+                                25<span>February</span>
                             </div>
                         </div>
 
                         <header class="entry-header">
-                            <h3 class="entry-title"><a href="#">{{up.titre}}</a></h3>
+                            <h3 class="entry-title"><a href="#">Blockchain Conference</a></h3>
 
-                            <div class="event-date-time">"{{up.date_start}}" - "{{up.date_end}}"</div>
+                            <div class="event-date-time">May 29, 2018 @ 8:00 Pm - May 30, 2018 @ 4:00 Am</div>
 
-                            <div class="event-speaker">Speackers: {{up.speackers}}</div>
+                            <div class="event-speaker">Speackers: Maria Williams, Luis Smith, James Doe</div>
                         </header>
 
                         <footer class="entry-footer">
                             <a href="#">Buy Tikets</a>
                         </footer>
                     </div>
-                    {% endfor %}
-                    <!-- <div class="upcoming-event-wrap flex flex-wrap justify-content-between align-items-center">
+
+                    <div class="upcoming-event-wrap flex flex-wrap justify-content-between align-items-center">
                         <figure class="events-thumbnail">
-                            <a href="#"><img src="{{event.image}}" alt=""></a>
+                            <a href="#"><img src="{% static 'images/upcoming-2.jpg" alt=""></a>
                         </figure>
 
                         <div class="entry-meta">
@@ -260,7 +261,7 @@
 
                     <div class="upcoming-event-wrap flex flex-wrap justify-content-between align-items-center">
                         <figure class="events-thumbnail">
-                            <a href="#"><img src="{% static 'images/upcoming-3.jpg' %}" alt=""></a>
+                            <a href="#"><img src="{% static 'images/upcoming-3.jpg" alt=""></a>
                         </figure>
 
                         <div class="entry-meta">
@@ -280,12 +281,12 @@
                         <footer class="entry-footer">
                             <a href="#">Buy Tikets</a>
                         </footer>
-                    </div>-->
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div> 
+</div>
 
 <div class="newsletter-subscribe">
     <div class="container">
@@ -326,11 +327,11 @@
 
                 <nav class="footer-navigation">
                     <ul class="flex flex-wrap justify-content-center align-items-center">
-                         <li><a href="{% url 'index' %}">Home</a></li>
-                            <li><a href="{% url 'single-event' %}">About us</a></li>
-                            <li><a href="{% url 'events' %}">Events</a></li>
-                            <li><a href="{% url 'events-news' %}">News</a></li>
-                            <li><a href="{% url 'contact' %}">Contact</a></li>
+                        li><a href="{% url 'index' %}">Home</a></li>
+                        <li><a href="{% url 'single-event' %}">About us</a></li>
+                        <li><a href="{% url 'events' %}">Events</a></li>
+                        <li><a href="{% url 'events-news' %}">News</a></li>
+                        <li><a href="{% url 'contact' %}">Contact</a></li>
                     </ul>
                 </nav>
 
@@ -340,14 +341,11 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
                 <div class="footer-social">
                     <ul class="flex flex-wrap justify-content-center align-items-center">
-                        
-                        {% for  social in reseau %}
-                        <li><a href="{{social.lien}}"><i class="{{social.icone}}"></i></a></li>
-                        {% endfor %}
-                         {% comment %} <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
                         <li><a href="#"><i class="fa fa-instagram"></i></a></li>
                         <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li> - {% endcomment %}
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -359,14 +357,14 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <span><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1395 1184q0 13-10 23l-50 50q-10 10-23 10t-23-10l-393-393-393 393q-10 10-23 10t-23-10l-50-50q-10-10-10-23t10-23l466-466q10-10 23-10t23 10l466 466q10 10 10 23z"/></svg></span>
 </div>
 
-<script type='text/javascript' src='{% static "js/jquery.js" %}'></script>
-<script type='text/javascript' src='{% static "js/masonry.pkgd.min.js" %}'></script>
-<script type='text/javascript' src='{% static "js/jquery.collapsible.min.js" %}'></script>
-<script type='text/javascript' src='{% static "js/swiper.min.js" %}'></script>
-<script type='text/javascript' src='{% static "js/jquery.countdown.min.js" %}'></script>
-<script type='text/javascript' src='{% static "js/circle-progress.min.js" %}'></script>
-<script type='text/javascript' src='{% static "js/jquery.countTo.min.js" %}'></script>
-<script type='text/javascript' src='{% static "js/custom.js" %}'></script>
+<script type='text/javascript' src='js/jquery.js'></script>
+<script type='text/javascript' src='js/masonry.pkgd.min.js'></script>
+<script type='text/javascript' src='js/jquery.collapsible.min.js'></script>
+<script type='text/javascript' src='js/swiper.min.js'></script>
+<script type='text/javascript' src='js/jquery.countdown.min.js'></script>
+<script type='text/javascript' src='js/circle-progress.min.js'></script>
+<script type='text/javascript' src='js/jquery.countTo.min.js'></script>
+<script type='text/javascript' src='js/custom.js'></script>
 
 </body>
 </html>

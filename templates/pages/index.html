@@ -232,17 +232,17 @@
             <div class="col-12">
                 <div class="featured-events-wrap flex flex-wrap justify-content-between">
                     {% for ev in event %}
-                    <div class="event-content-wrap positioning-event-{{forloop.counter}} {% cycle 'half' '' %}">
-                        <figure>
-                            <a href="#"><img src="{{ev.image.url}}" alt="1"></a>
-                        </figure>
+                        <div class="event-content-wrap positioning-event-{{forloop.counter}} {% cycle 'half' '' %}">
+                            <figure>
+                                <a href="#"><img src="{{ev.image.url}}" alt="1"></a>
+                            </figure>
 
-                        <header class="entry-header">
-                            <h3 class="entry-title">{{ev.titre}}</h3>
+                            <header class="entry-header">
+                                <h3 class="entry-title">{{ev.titre}}</h3>
 
-                            <div class="posted-date">{{ev.date_start}}</div>
-                        </header>
-                    </div>
+                                <div class="posted-date">{{ev.date_start}}</div>
+                            </header>
+                        </div>
                     {% endfor %}
                      {% comment %} <div class="event-content-wrap positioning-event-2 ">
                         <figure>
@@ -352,7 +352,7 @@
             <div class="col-12 col-sm-6 col-md-4">
                 <div class="next-event-wrap">
                     <figure>
-                        <a href="#"><img src="{{element.image.url}}" alt="1"></a>
+                        <a href="#"><img src="{{ element.image.url }}" alt="1"></a>
 
                         <div class="event-rating">8.9</div>
                     </figure>
@@ -442,7 +442,7 @@
 
                 <div class="swiper-container homepage-regional-events-slider">
                     <div class="swiper-wrapper">
-                     {% for newyork in event %} 
+                    {% for newyork in event %} 
                         <div class="swiper-slide">
                             <figure>
                                 <img src="{{newyork.image.url}}" alt="">
@@ -478,45 +478,50 @@
                     </header>
 
                     <div class="events-partners-logos flex flex-wrap justify-content-between align-items-center">
-                        <div class="event-partner-l%ogo">
-                            <a href="#"><img src="/static/images/pixar.png" alt=""></a>
+                    
+                    {% for partner in partenaires %}
+                        <div class="event-partner-logo">
+                            <a href="#"><img src="{{ partner.image.url }}" alt=""></a>
                         </div>
+                    {% endfor %}
+                        
+                        
 
-                        <div class="event-partner-l%ogo">
+                        {% comment %} <div class="event-partner-logo">
                             <a href="#"><img src="/static/images/the-pirate.png" alt=""></a>
                         </div>
 
-                        <div class="event-partner-l%ogo">
+                        <div class="event-partner-logo">
                             <a href="#"><img src="/static/images/himalayas.png" alt=""></a>
                         </div>
 
-                        <div class="event-partner-l%ogo">
+                        <div class="event-partner-logo">
                             <a href="#"><img src="/static/images/sa.png" alt=""></a>
                         </div>
 
-                        <div class="event-partner-l%ogo">
+                        <div class="event-partner-logo">
                             <a href="#"><img src="/static/images/south-porth.png" alt=""></a>
                         </div>
 
-                        <div class="event-partner-l%ogo">
+                        <div class="event-partner-logo">
                             <a href="#"><img src="/static/images/himalayas.png" alt=""></a>
                         </div>
 
-                        <div class="event-partner-l%ogo">
+                        <div class="event-partner-logo">
                             <a href="#"><img src="/static/images/sa.png" alt=""></a>
                         </div>
 
-                        <div class="event-partner-l%ogo">
+                        <div class="event-partner-logo">
                             <a href="#"><img src="/static/images/south-porth.png" alt=""></a>
                         </div>
 
-                        <div class="event-partner-l%ogo">
+                        <div class="event-partner-logo">
                             <a href="#"><img src="/static/images/pixar.png" alt=""></a>
                         </div>
 
-                        <div class="event-partner-l%ogo">
+                        <div class="event-partner-logo">
                             <a href="#"><img src="/static/images/the-pirate.png" alt=""></a>
-                        </div>
+                        </div> {% endcomment %}
                     </div>
                 </div>
 
@@ -536,13 +541,27 @@
                 </header>
 
                 <div class="newsletter-form">
-                    <form class="flex flex-wrap justify-content-center align-items-center">
+                    <form action="{% url 'newletter'%}" method="POST" class="flex flex-wrap justify-content-center align-items-center">
+                    {% csrf_token %}
+                    
+                    {% if messages %}
+                    <ul class="messages col-md-12 col-lg-12" >
+                        {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                            <div class="alert alert-info">
+                                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+                                {{ message }}
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
                         <div class="col-md-12 col-lg-3">
-                            <input type="text" placeholder="Name">
+                            <input type="text" placeholder="Name", name='name'>
                         </div>
 
                         <div class="col-md-12 col-lg-6">
-                            <input type="email" placeholder="Your e-mail">
+                            <input type="email" placeholder="Your e-mail", name='email'>
                         </div>
 
                         <div class="col-md-12 col-lg-3">
@@ -579,12 +598,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
                 <div class="footer-social">
                     <ul class="flex flex-wrap justify-content-center align-items-center">
-                        {% for item in reseau_social %}
+                        {% for item in reseau %}
                             <li><a href="{{item.lien}}"><i class="{{item.icone}}"></i></a></li>
                         {% endfor %}
-                        
-                        
-                            
                     </ul>
                 </div>
             </div>

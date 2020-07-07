@@ -1,5 +1,7 @@
 from django.db import models
-
+from django.utils.text import slugify 
+import time
+zips = time.time()
 # Create your models here.
 class Categorie(models.Model):
     nom = models.CharField(max_length=255)
@@ -22,7 +24,6 @@ class Tag(models.Model):
     date_update = models.DateField(auto_now=True)
     status = models.BooleanField(default=True)
     
-
     class Meta:
         verbose_name = "Tag"
         verbose_name_plural = "Tags"
@@ -36,7 +37,7 @@ class Lieu(models.Model):
     marp_url = models.TextField()
     telephone = models.IntegerField()
     adresse = models.CharField(max_length=255)
-    email = models.URLField()
+    email = models.EmailField()
 
     date_add = models.DateField(auto_now=True)
     date_update = models.DateField(auto_now=True)
@@ -56,6 +57,7 @@ class Event(models.Model):
     prix = models.FloatField()
     description = models.TextField()
     organisateurs = models.TextField()
+    speackers = models.CharField(max_length=255,null=True)
     tags = models.ManyToManyField(Tag)
     categorie = models.ForeignKey(Categorie, on_delete=models.CASCADE, related_name='categorie_Event')
     image = models.ImageField(upload_to='image/Event')
@@ -81,7 +83,14 @@ class New(models.Model):
     date_add = models.DateField(auto_now=True)
     date_update = models.DateField(auto_now=True)
     status = models.BooleanField(default=True)
+
+    slug = models.SlugField(unique=True, null= True, blank=True)
+
+    def save(self, *args, **kwargs):
+        self.slug ='-'.join((slugify(self.titre),(slugify(zips))))
+        super(New, self).save(*args, **kwargs)
     
+
     class Meta:
         verbose_name = "New"
         verbose_name_plural = "News"
@@ -91,7 +100,7 @@ class New(models.Model):
 
 class Partner(models.Model):
     nom = models.CharField( max_length=255)
-    image = models.ImageField(upload_to="immage/Partner")
+    image = models.ImageField(upload_to="image/Partner")
     lien = models.URLField()
 
     date_add = models.DateField(auto_now=True)
@@ -106,12 +115,3 @@ class Partner(models.Model):
 
     def __str__(self):
         return self.nom
-
-   
-
-   
-
-
-
-
-

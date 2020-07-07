@@ -34,7 +34,7 @@ class Siteinfo(models.Model):
     
 class Contact(models.Model):
     nom = models.CharField( max_length=255)
-    email = models.CharField( max_length=255)    
+    email = models.EmailField()    
     subject = models.TextField(null=True)
     message = models.TextField()
 
@@ -48,7 +48,7 @@ class Contact(models.Model):
     def __str__(self):
         return self.email
 
-class Reseau_social(models.Model):
+class Reseau(models.Model):
     ICONE =[
         ('fa fa-pinterest','pinterest'),
         ('fa fa-linkedin','linkedin'),
@@ -67,8 +67,8 @@ class Reseau_social(models.Model):
     status = models.BooleanField(default=True)
 
     class Meta:
-        verbose_name = "Reseau_social"
-        verbose_name_plural = "Reseau_sociaux"
+        verbose_name = "Reseau"
+        verbose_name_plural = "Reseaux"
 
     def __str__(self):
         return self.nom

@@ -28,7 +28,7 @@
                 <div class="col-10 col-lg-2 order-lg-1">
                     <div class="site-branding">
                         <div class="site-title">
-                            <a href="#"><img src="{% static 'images/logo.png' %}" alt="logo"></a>
+                            <a href="#"><img src="{{siteinfo.logo_H.url}}" alt="logo"></a>
                         </div><!-- .site-title -->
                     </div><!-- .site-branding -->
                 </div><!-- .col -->
@@ -98,7 +98,7 @@
 
 <div class="container">
     <div class="row events-list">
-        <div class="col-12 col-lg-6 single-event">
+        {% comment %} <div class="col-12 col-lg-6 single-event">
             <figure class="events-thumbnail">
                 <a href="#"><img src="{% static 'images/event-1.jpg' %}" alt=""></a>
             </figure>
@@ -122,30 +122,29 @@
                     <a href="#">Buy Tikets</a>
                 </footer>
             </div>
-        </div>
-
-        <div class="col-12 col-lg-6 single-event">
+        </div> {% endcomment %}
+{% for drible  in event  %}
+        <div class="col-12 col-lg-6 single-event ">
             <figure class="events-thumbnail">
-                <a href="#"><img src="{% static 'images/event-2.jpg' %}" alt=""></a>
+                <a href="#"><img src="{{drible.image.url}}" alt=""></a>
             </figure>
-
             <div class="event-content-wrap">
                 <header class="entry-header flex justify-content-between">
                     <div>
-                        <h2 class="entry-title"><a href="#">Summer Festival in Detroit</a></h2>
+                        <h2 class="entry-title"><a href="#">{{drible.titre}}</a></h2>
 
-                        <div class="event-location"><a href="#">Ford Field  2000 Brush St, Detroit, MI 48226, EE. UU.</a></div>
+                        <div class="event-location"><a href="#">{{drible.adresse}}</a></div>
 
-                        <div class="event-date">May 29, 2018 @ 8:00 Pm - May 30, 2018 @ 4:00 Am</div>
+                        <div class="event-date">{{drible.date_start}} - {{drible.date_end}}</div>
                     </div>
 
                     <div class="event-cost flex justify-content-center align-items-center">
-                        from<span>$89</span>
+                        from<span>${{drible.prix}}</span>
                     </div>
                 </header>
 
                 <div class="entry-content">
-                    <p>Vestibulum eget lacus at mauris sagittis varius. Etiam ut venenatis dui. Nullam tellus risust lacus at mauris sagittis variusut.</p>
+                    <p>{{drible.description}}</p>
                 </div>
 
                 <footer class="entry-footer">
@@ -153,8 +152,8 @@
                 </footer>
             </div>
         </div>
-
-        <div class="col-12 col-lg-6 single-event">
+{% endfor %}
+        {% comment %} <div class="col-12 col-lg-6 single-event">
             <figure class="events-thumbnail">
                 <a href="#"><img src="{% static 'images/event-3.jpg' %}" alt=""></a>
             </figure>
@@ -430,7 +429,7 @@
                     <a href="#">Buy Tikets</a>
                 </footer>
             </div>
-        </div>
+        </div> {% endcomment %}
     </div>
 
     <div class="row">
@@ -452,31 +451,32 @@
                     </div>
 
                     <div class="upcoming-events-list">
+                      {% for element in upcoming %}
                         <div class="upcoming-event-wrap flex flex-wrap justify-content-between align-items-center">
                             <figure class="events-thumbnail">
-                                <a href="#"><img src="{% static 'images/upcoming-1.jpg' %}" alt=""></a>
+                                <a href="#"><img src="{{element.image.url}}" alt=""></a>
                             </figure>
 
                             <div class="entry-meta">
                                 <div class="event-date">
-                                    25<span>February</span>
+                                    {{element.date_start|date:'d'}}<span>{{element.date_start|date:'F'|title}}</span>
                                 </div>
                             </div>
 
                             <header class="entry-header">
-                                <h3 class="entry-title"><a href="#">Blockchain Conference</a></h3>
+                                <h3 class="entry-title"><a href="#">{{element.titre}}</a></h3>
 
-                                <div class="event-date-time">May 29, 2018 @ 8:00 Pm - May 30, 2018 @ 4:00 Am</div>
+                                <div class="event-date-time">{{element.date_start}} - {{element.date_end}}</div>
 
-                                <div class="event-speaker">Speackers: Maria Williams, Luis Smith, James Doe</div>
+                                <div class="event-speaker">Speackers: {{element.speackers}}</div>
                             </header>
 
                             <footer class="entry-footer">
                                 <a href="#">Buy Tikets</a>
                             </footer>
                         </div>
-
-                        <div class="upcoming-event-wrap flex flex-wrap justify-content-between align-items-center">
+                        {% endfor %}
+                         {% comment %} <div class="upcoming-event-wrap flex flex-wrap justify-content-between align-items-center">
                             <figure class="events-thumbnail">
                                 <a href="#"><img src="{% static 'images/upcoming-2.jpg' %}" alt=""></a>
                             </figure>
@@ -522,10 +522,11 @@
                             <footer class="entry-footer">
                                 <a href="#">Buy Tikets</a>
                             </footer>
-                        </div>
+                        </div> {% endcomment %}
+                    
                     </div>
                 </div>
-            </div>
+            </div> 
         </div>
     </div>
 </div>
@@ -564,7 +565,7 @@
         <div class="row">
             <div class="col-12">
                 <figure class="footer-logo">
-                    <a href="#"><img src="{% static 'images/logo.png' %}" alt="logo"></a>
+                    <a href="#"><img src="{{siteinfo.logo_H.url}}" alt="logo"></a>
                 </figure>
 
                 <nav class="footer-navigation">
@@ -584,11 +585,14 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
                 <div class="footer-social">
                     <ul class="flex flex-wrap justify-content-center align-items-center">
-                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        
+                        {% for network in reseau %}
+                          <li><a href="{{network.lien}}"><i class="{{network.icone}}"></i></a></li>  
+                        {% endfor %}
+                        <!-- <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
                         <li><a href="#"><i class="fa fa-instagram"></i></a></li>
                         <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li> -->
                     </ul>
                 </div>
             </div>

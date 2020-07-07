@@ -74,8 +74,8 @@ class ContactAdmin(admin.ModelAdmin):
         self.message_user(request, 'La selection a été desactivé avec succès')
     desactive.short_description = 'desactiver'
 
-@admin.register(models.Reseau_social)
-class Reseau_socialAdmin(admin.ModelAdmin):
+@admin.register(models.Reseau)
+class ReseauAdmin(admin.ModelAdmin):
     list_display  = ('nom','lien','icone','date_add','date_update','status')
     list_filter = ('date_add','date_update','status')
     search_fields = ('nom',)

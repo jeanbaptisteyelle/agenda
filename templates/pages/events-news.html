@@ -80,19 +80,19 @@
         <div class="col-12">
             <article class="events-news-post">
                 <header class="entry-header">
-                    <h2 class="entry-title"><a href="#">{{news.titre}}</a></h2>
+                    <h2 class="entry-title"><a href="{% url 'single_event' news.slug %}">{{news.titre}}</a></h2>
 
                     <div class="entry-meta flex align-items-center">
-                        <div class="posted-author"><a href="#">by James Williams</a></div>
+                        <div class="posted-author"><a href="{% url 'single_event' news.slug %}">by {{news.organisateurs}}</a></div>
 
-                        <div class="post-comments"><a href="#">2 Comments</a></div>
+                        <div class="post-comments"><a href="{% url 'single_event' news.slug %}">2 Comments</a></div>
                     </div>
                 </header>
 
                 <figure>
-                    <a href="#"><img src="{{news.image.url}}" alt=""></a>
+                    <a href="{% url 'single_event' news.slug %}"><img src="{{news.image.url}}" alt=""></a>
 
-                    <div class="posted-date"><span>Feb</span><span>11</span><span>‘18</span></div>
+                    <div class="posted-date"><span>{{news.event.date_start|date:'M'}}</span><span>{{news.event.date_start|date:'d'}}</span><span>{{news.event.date_start|date:'y'}}</span></div>
                 </figure>
 
                 <div class="entry-content">
@@ -212,11 +212,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
                 <div class="footer-social">
                     <ul class="flex flex-wrap justify-content-center align-items-center">
-                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        {% for network in reseau %}
+                        <li><a href="{{network.lien}}"><i class="{{network.icone}}"></i></a></li>
+                        {% endfor %}
+                        <!-- <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
                         <li><a href="#"><i class="fa fa-instagram"></i></a></li>
                         <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li> -->
                     </ul>
                 </div>
             </div>

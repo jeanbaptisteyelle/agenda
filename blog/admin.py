@@ -69,13 +69,13 @@ class LieuAdmin(admin.ModelAdmin):
 
 @admin.register(models.Event)
 class EventAdmin(admin.ModelAdmin):
-    list_display  = ('titre','lieu','date_start','date_end','prix','organisateurs','categorie','date_add','date_update','status','image_view')
+    list_display  = ('titre','lieu','date_start','date_end','prix','organisateurs','speackers','categorie','date_add','date_update','status','image_view')
     list_filter = ('date_add','date_update','status','lieu','categorie','tags')
     search_fields = ('titre',)
     date_hierarchy = 'date_add'
     list_display_links = ['titre']
     fieldsets = [
-          ('Event_info', {'fields':['titre', 'description','date_start','date_end','prix','organisateurs','categorie','lieu','image']}),
+          ('Event_info', {'fields':['titre', 'description','date_start','date_end','prix','organisateurs','speackers','categorie','lieu','tags','image']}),
           ('standard', {'fields':['status']}),
           ]
 
@@ -123,7 +123,7 @@ class PartnerAdmin(admin.ModelAdmin):
 
     @admin.register(models.New)
     class NewAdmin(admin.ModelAdmin):
-        list_display = ('titre','description','event','date_add','date_update','status','image_view')
+        list_display = ('titre','slug', 'description','event','date_add','date_update','status','image_view')
         list_filter = ('date_add','date_update','status','event',)
         search_fields = ('titre',)
         date_hierarchy = 'date_add'

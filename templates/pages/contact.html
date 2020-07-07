@@ -136,7 +136,7 @@
 </div>
 
 <div class="contact-page-map">
-    <iframe id="gmap_canvas" src="{{lieu.marp_url}}" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+    <iframe id="gmap_canvas" src="{{marp.marp_url}}" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
 </div>
 
 <div class="container">
@@ -189,7 +189,7 @@
         <div class="row">
             <div class="col-12">
                 <figure class="footer-logo">
-                    <a href="#"><img src="{% static 'images/logo.png' %}" alt="logo"></a>
+                    <a href="#"><img src="{{siteinfo.logo_H.url}}" alt="logo"></a>
                 </figure>
 
                 <nav class="footer-navigation">
@@ -208,11 +208,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
                 <div class="footer-social">
                     <ul class="flex flex-wrap justify-content-center align-items-center">
-                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                    {% for network in reseau %}
+                        <li><a href="{{network.lien}}"><i class="{{network.icone}}"></i></a></li>
+                    {% endfor %}
+                        {% comment %} <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
                         <li><a href="#"><i class="fa fa-instagram"></i></a></li>
                         <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li> {% endcomment %}
                     </ul>
                 </div>
             </div>
