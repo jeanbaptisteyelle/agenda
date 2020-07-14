@@ -541,13 +541,13 @@
                 </header>
 
                 <div class="newsletter-form">
-                    <form action="{% url 'newletter'%}" method="POST" class="flex flex-wrap justify-content-center align-items-center">
+                    <form action="{% url 'newletter' %}" method="POST" class="flex flex-wrap justify-content-center align-items-center">
                     {% csrf_token %}
                     
                     {% if messages %}
                     <ul class="messages col-md-12 col-lg-12" >
                         {% for message in messages %}
-                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>
                             <div class="alert alert-info">
                                 {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
                                 {{ message }}
