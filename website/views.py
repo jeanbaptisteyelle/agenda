@@ -47,7 +47,7 @@ def index(request):
 
     datas = {
        
-        "siteinfo":siteinfo,
+        # "siteinfo":siteinfo,
         "about":about,
         "lieu":lieu,
         "reseau":reseau,
