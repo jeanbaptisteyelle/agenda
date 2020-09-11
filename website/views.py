@@ -35,7 +35,7 @@ def newletter(request):
         
 
 def index(request):      
-    siteinfo = models.Siteinfo.objects.filter(status=True).latest('date_update')
+    #siteinfo = models.Siteinfo.objects.filter(status=True).latest('date_update')
     about = models.About.objects.filter(status=True).latest('date_update')
     lieu = blog_models.Lieu.objects.filter(status=True)
     event = blog_models.Event.objects.filter(status=True)
@@ -46,7 +46,7 @@ def index(request):
 
     datas = {
        
-        "siteinfo":siteinfo,
+        #"siteinfo":siteinfo,
         "about":about,
         "lieu":lieu,
         "reseau":reseau,
