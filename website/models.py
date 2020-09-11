@@ -18,8 +18,8 @@ class About(models.Model):
         return self.titre
 
 class Siteinfo(models.Model):
-    slogan = models.CharField( max_length=255)
-    logo_H = models.ImageField( upload_to='images/about')
+    slogan = models.CharField(max_length=255)
+    logo_H = models.ImageField(upload_to='images/about')
 
     date_add = models.DateField(auto_now_add=True)
     date_update = models.DateField(auto_now_add=True)
