@@ -36,7 +36,7 @@ def newletter(request):
 
 def index(request):      
     # siteinfo = models.Siteinfo.objects.filter(status=True)[:1].get()
-    print(siteinfo)
+    # print(siteinfo)
     about = models.About.objects.get(status=True)
     lieu = blog_models.Lieu.objects.filter(status=True)
     event = blog_models.Event.objects.filter(status=True)
@@ -59,13 +59,13 @@ def index(request):
     return render(request, 'pages/index.html', datas)
 
 def contact(request):
-    siteinfo = models.Siteinfo.objects.filter(status=True).latest('date_update')
+    # siteinfo = models.Siteinfo.objects.filter(status=True).latest('date_update')
     lieu = blog_models.Lieu.objects.filter(status=True)
     reseau = models.Reseau.objects.filter(status=True)
     
     datas = {
         "lieu":lieu[:3],
-        "siteinfo":siteinfo,
+        # "siteinfo":siteinfo,
         "marp": lieu.last,
         "reseau":reseau,
     }
@@ -75,11 +75,11 @@ def events(request):
     event = blog_models.Event.objects.filter(status=True)[:6]
     upcoming = blog_models.Event.objects.filter(date_start__gt = next_date)[:3]
     reseau = models.Reseau.objects.filter(status=True)
-    siteinfo = models.Siteinfo.objects.filter(status=True).latest('date_update')
+    # siteinfo = models.Siteinfo.objects.filter(status=True).latest('date_update')
     datas = {
         "reseau":reseau,
         "event":event,
-        "siteinfo":siteinfo,
+        # "siteinfo":siteinfo,
         "upcoming":upcoming,
     }
     return render(request, 'pages/events.html', datas)
