@@ -35,7 +35,8 @@ def newletter(request):
         
 
 def index(request):      
-    siteinfo = models.Siteinfo.objects.get(status=True)
+    siteinfo = models.Siteinfo.objects.filter(status=True)[:1].get()
+    print(siteinfo)
     about = models.About.objects.get(status=True)
     lieu = blog_models.Lieu.objects.filter(status=True)
     event = blog_models.Event.objects.filter(status=True)
