@@ -25,7 +25,7 @@ SECRET_KEY = 'q&liwq2)&xf+v3d(jm!23=n8q5c%3i1_gxx(w4h9nm_i!vzbm9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -49,9 +49,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
 
 ROOT_URLCONF = 'agenda.urls'
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 TEMPLATES = [
     {
@@ -126,4 +130,8 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT= os.path.join(BASE_DIR, 'static_cdn')
 MEDIA_ROOT= os.path.join(BASE_DIR, 'media_cdn')
+
+import django_heroku
+
+django_heroku.settings(locals())
 
